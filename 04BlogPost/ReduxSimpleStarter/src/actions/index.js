@@ -2,6 +2,7 @@ import axios from 'axios';
 
 // action type
 export const FETCH_POSTS = 'FETCH_POSTS';
+export const FETCH_POST = 'FETCH_POST';
 export const CREATE_POST = 'CREATE_POST';
 
 // root url for API
@@ -16,6 +17,15 @@ export function fetchPosts(){
         type: FETCH_POSTS,
         payload: request
     };
+}
+
+export function fetchPost(id){
+    const request = axios.get(`${ROOT_URL}/posts/${id}${API_KEY}`);
+
+    return {
+        type: FETCH_POST,
+        payload: request
+    }
 }
 
 // form -> property -> endpoint
