@@ -16,7 +16,7 @@ class PostsIndex extends Component {
     //     this.props.fetchPosts();
     // }
 
-    state = {
+    componentDidMount() {
         this.props.fetchPosts();
     }
 
