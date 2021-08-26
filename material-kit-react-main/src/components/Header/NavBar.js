@@ -25,8 +25,8 @@ const navConfig =[
     {
         items:[
             {
-                title:'공지사항',
-                href: '/notice'
+                title:'DARI',
+                href: '/dari'
             },
             {
                 title:'ABOUT',

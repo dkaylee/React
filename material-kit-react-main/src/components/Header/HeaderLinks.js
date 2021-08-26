@@ -26,56 +26,31 @@ export default function HeaderLinks(props) {
   const classes = useStyles();
   return (
     <List className={classes.list}>
-                <ListItem className={classes.listItem}>
-                  <Button
-                    href='/notice'
-                    className={classes.navLink}
-                    
-                    color="transparent"
-                  >
-                    Notice
-                  </Button>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                  <Button
-                    href="/about"
-                    className={classes.navLink}
-                    
-                    color="transparent"
-                  >
-                    About
-                  </Button>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                  <Button
-                    href="/class"
-                    className={classes.navLink}
-                    
-                    color="transparent"
-                  >
-                    Class
-                  </Button>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                  <Button
-                    href="/gallery"
-                    className={classes.navLink}
-                    
-                    color="transparent"
-                  >
-                    Gallery
-                  </Button>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                  <Button
-                    href="/map"
-                    className={classes.navLink}
-                    
-                    color="transparent"
-                  >
-                    Map
-                  </Button>
-                </ListItem> 
+      <ListItem className={classes.listItem}>
+        <Button href="/dari" className={classes.navLink} color="transparent">
+          Dari
+        </Button>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Button href="/about" className={classes.navLink} color="transparent">
+          About
+        </Button>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Button href="/class" className={classes.navLink} color="transparent">
+          Class
+        </Button>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Button href="/gallery" className={classes.navLink} color="transparent">
+          Gallery
+        </Button>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Button href="/map" className={classes.navLink} color="transparent">
+          Map
+        </Button>
+      </ListItem>
       <ListItem className={classes.listItem}>
         {/*<Tooltip title="Delete">
           <IconButton aria-label="Delete">
@@ -129,6 +104,9 @@ export default function HeaderLinks(props) {
             className={classes.navLink}
           >
             <i className={classes.socialIcons + " fab fa-instagram"} />
+          </Button>
+          <Button href="/login" lassName={classes.navLink} color="info">
+            Login
           </Button>
         </Tooltip>
       </ListItem>
