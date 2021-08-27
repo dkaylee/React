@@ -15,6 +15,8 @@ import bodyParser from 'koa-bodyparser';
 import mongoose from 'mongoose';
 
 import api from './api';
+import jwtMiddleware from './lib/jwtMiddleware';
+// import createFakeData from './createFakeData';
 
 //비구조화 할당을 통해 process.env 내부 값에 대한 레퍼런스 만들기
 const { PORT, MONGO_URI } = process.env;
@@ -22,7 +24,8 @@ const { PORT, MONGO_URI } = process.env;
 mongoose
 .connect(MONGO_URI, { useNewUrlParser: true })
 .then(() => {
-    console.log('connected to MongoDB');
+    console.log('Connected to MongoDB');
+    // createFakeData();
 })
 .catch(e=>{
     console.error(e)
@@ -55,6 +58,7 @@ app.use(bodyParser());
 
 // app 인스턴스에 라우터 적용
 app.use(router.routes()).use(router.allowedMethods());
+app.use(jwtMiddleware);
 
 // Middle Ware 설정 next() 미들웨어 역할
 // app.use(async(ctx, next) => {
