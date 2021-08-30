@@ -56,7 +56,7 @@ app.use(bodyParser());
 //     ctx.body = id ? `포스트 #${id}` : '포스트 아이디가 없습니다.';
 // });
 
-// app 인스턴스에 라우터 적용
+// app 인스턴스에 라우터 적용 (middleware)
 app.use(router.routes()).use(router.allowedMethods());
 app.use(jwtMiddleware);
 
