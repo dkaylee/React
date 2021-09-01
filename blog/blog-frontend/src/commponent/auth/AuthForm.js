@@ -76,7 +76,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
                 placeholder="비밀번호"
                 type="password"
                 onChange={onChange}
-                value={form.password}
+                value={form.password || ''}
                 />
                 {type === 'register' && (
                 <StyleInput
@@ -85,9 +85,9 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
                 placeholder="비밀번호 확인"
                 type="password"
                 onChange={onChange}
-                value={form.passwordConfirm}
+                value={form.passwordConfirm || ''}
                 />
-                )}
+            )}
 
                 <ButtonWithMarginTop cyan fullWidth>
                     {text}
