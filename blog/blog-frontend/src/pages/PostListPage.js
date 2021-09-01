@@ -3,7 +3,7 @@ import "../commponent/common/Button.css";
 
 const PostListPage = () => {
     return (
-    <button className="btn">Enter</button>
+    <div>리스트페이지</div>
     );
 };
 
