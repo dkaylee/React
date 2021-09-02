@@ -13,7 +13,7 @@ const LoginForm = ({ history }) => {
         form: auth.login,
         auth: auth.auth,
         authError: auth.authError,
-        user: user.user
+        user: user.user,
     }));
     // 인풋 변경 이벤트 핸들러
     const onChange = e => {
@@ -22,8 +22,8 @@ const LoginForm = ({ history }) => {
             changeField({
                 form:'login',
                 key: name,
-                value
-            })
+                value,
+            }),
         );
     };
 
@@ -49,12 +49,19 @@ const LoginForm = ({ history }) => {
         if(auth) {
             console.log('로그인 성공');
             console.log(check());
+            dispatch(check());
         }
     }, [auth, authError, dispatch]);
 
+    // 로그인 상태 유지를 위해 수정 (localStorage)
     useEffect(() => {
         if(user){
             history.push('/');
+            try {
+                localStorage.setItem('user', JSON.stringify(user));
+            }catch(e) {
+                console.log('localStorage is not working');
+            }
         }
     }, [history, user]);
 

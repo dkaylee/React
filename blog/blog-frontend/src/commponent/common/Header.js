@@ -39,20 +39,22 @@ const UserInfo = styled.div`
     margin-right: 1rem;
 `;
 
-const Header = ({user}) => {
+const Header = ({ user, onLogout }) => {
     return(
         <>
         <HeaderBlock>
             <Wrapper>
                 <Link to='/' className="logo">REACT</Link>
                 {user ? (
-                <div className="right">
-                <UserInfo>{user.username}</UserInfo>
-                <Button>Logout</Button></div>
-                ):(<div className="right">
-                    <Button to="/login">Login</Button>
-                </div>
-                )}
+            <div className="right">
+              <UserInfo>{user.username}</UserInfo>
+              <Button onClick={onLogout}>로그아웃</Button>
+            </div>
+          ) : (
+            <div className="right">
+              <Button to="/login">로그인</Button>
+            </div>
+          )}
             </Wrapper>
         </HeaderBlock>
         <Spacer/>

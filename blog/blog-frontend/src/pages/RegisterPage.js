@@ -3,7 +3,7 @@ import AuthTemplate from "../commponent/auth/AuthTemplate";
 import RegisterForm from "../containers/auth/RegisterForm";
 
 const RegisterPage = () => {
-    return (        
+    return (       
     <AuthTemplate>
         <RegisterForm/>
     </AuthTemplate>
