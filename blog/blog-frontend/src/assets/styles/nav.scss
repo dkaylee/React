@@ -1,0 +1,35 @@
+.navBar {
+  background-color: #333333;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px;
+}
+.navBar_toggleBtn {
+  display: none;
+}
+.navBar_menus {
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  width: 50%;
+}
+.navBar_menus_menu a {
+  color: #d6d6d6;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  .navBar {
+    justify-content: space-between;
+  }
+  .navBar_menus {
+    display: none;
+  }
+  .navBar_toggleBtn {
+    display: flex;
+  }
+  .navBar_icons .search {
+    display: none;
+  }
+}

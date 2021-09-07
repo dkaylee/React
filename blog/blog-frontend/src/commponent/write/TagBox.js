@@ -1,4 +1,5 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import palette from '../../styles/palette';
 
@@ -63,10 +64,10 @@ const TagListBlock = styled.div`
 
 // React.memo를 사용하여 tag 값이 바뀔 때만 리렌더링되도록 처리
 const TagItem = React.memo(({ tag, onRemove, onChangeTags }) => (
-  <Tag onClick={() => onRemove(tag)}> #{tag}</Tag>
+  <Tag onClick={() => onRemove(tag)}>#{tag}</Tag>
 ));
 
-// React.memo를 사용하여 tag 값이 바뀔 때만 리렌더링되도록 처리
+// React.memo를 사용하여 tags 값이 바뀔 때만 리렌더링되도록 처리
 const TagList = React.memo(({ tags, onRemove }) => (
   <TagListBlock>
     {tags &&
@@ -80,12 +81,14 @@ const TagBox = ({ tags, onChangeTags }) => {
 
   const insertTag = useCallback(
     (tag) => {
-      if (!tag) return; // 공백이라면 추가하지 않음
-      if (localTags && localTags.includes(tag)) return; // 이미 존재한다면 추가하지 않음
+      if (!tag) return; // 공백이면 추가하지 않음
+      if (localTags.includes(tag)) return; //이미 존재하면 추가하지 않음
       if (localTags === null || localTags === undefined) {
         console.log('localTags가 null입니다.');
+        return;
       }
       const nextTags = [...localTags, tag];
+      // setLocalTags([...localTags, tag]);
       setLocalTags(nextTags);
       onChangeTags(nextTags);
     },
@@ -95,6 +98,7 @@ const TagBox = ({ tags, onChangeTags }) => {
   const onRemove = useCallback(
     (tag) => {
       const nextTags = localTags.filter((t) => t !== tag);
+      // setLocalTags(localTags.filter((t) => t !== tag));
       setLocalTags(nextTags);
       onChangeTags(nextTags);
     },
@@ -108,13 +112,13 @@ const TagBox = ({ tags, onChangeTags }) => {
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      insertTag(input.trim()); //앞뒤공백없애서 등록
-      setInput(''); //input을 초기화함
+      insertTag(input.trim()); //앞뒤 공백을 없앤 후 등록
+      setInput(''); // input 초기화
     },
     [input, insertTag],
   );
 
-  // tags 값이 바뀔 때
+  // tag값이 바뀔 때
   useEffect(() => {
     setLocalTags(tags);
   }, [tags]);

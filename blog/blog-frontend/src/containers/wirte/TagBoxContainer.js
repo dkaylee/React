@@ -11,7 +11,7 @@ const TagBoxContainer = () => {
     dispatch(
       changeField({
         key: 'tags',
-        values: 'nextTags',
+        values: nextTags,
       }),
     );
   };
