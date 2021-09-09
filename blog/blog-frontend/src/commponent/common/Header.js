@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Responsive from './Responsive';
 import Button from '../common/Button';
+import { FiAlignJustify } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import palette from '../../styles/palette';
 
 const HeaderBlock = styled.div`
   background: #6cb2e2;
@@ -26,16 +28,23 @@ const Wrapper = styled(Responsive)`
   .right {
     display: flex;
     align-items: center;
+    padding-right: 20px;
   }
   .navbar_menus {
     display: flex;
     list-style: none;
     justify-content: space-around;
     width: 50%;
+    @media screen and (max-width: 500px) {
+      display: none;
+    }
   }
   .navbar_menu {
     color: #fff;
     text-decoration: none;
+    &:hover {
+      color: ${palette.gray[8]};
+    }
   }
 `;
 
@@ -49,7 +58,37 @@ const UserInfo = styled.div`
   margin-right: 1rem;
 `;
 
+const Menubar = styled.a`
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  position: absolute;
+  right: 100px;
+  height: 97px;
+  @media screen and (min-width: 500px) {
+    display: none;
+  }
+`;
+
+// const ControlBox = styled.div`
+//   display: flex;
+//   align-items: center;
+//   @media screen and (max-width: 500px) {
+//     flex-direction: column;
+//     align-items: flex-end;
+//     display: ${({ menu }) => {
+//       return menu === false ? 'none' : 'flex';
+//     }};
+//   }
+// `;
+
 const Header = ({ user, onLogout }) => {
+  const [menu, setmenu] = useState(false);
+
+  const onClick = () => {
+    setmenu(menu);
+  };
+
   return (
     <>
       <HeaderBlock>
@@ -73,7 +112,17 @@ const Header = ({ user, onLogout }) => {
                 Writepage
               </Link>
             </li>
+            <li>
+              <Link to="/write" className="navbar_menu">
+                Writepage
+              </Link>
+            </li>
           </ul>
+
+          <Menubar href="#" onClick={onClick}>
+            <FiAlignJustify />
+          </Menubar>
+
           {user ? (
             <div className="right">
               <UserInfo>{user.username}</UserInfo>

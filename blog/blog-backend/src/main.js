@@ -22,14 +22,14 @@ import jwtMiddleware from './lib/jwtMiddleware';
 const { PORT, MONGO_URI } = process.env;
 
 mongoose
-.connect(MONGO_URI, { useNewUrlParser: true })
-.then(() => {
+  .connect(MONGO_URI, { useNewUrlParser: true })
+  .then(() => {
     console.log('Connected to MongoDB');
     // createFakeData();
-})
-.catch(e=>{
-    console.error(e)
-});
+  })
+  .catch((e) => {
+    console.error(e);
+  });
 
 const app = new Koa();
 const router = new Router();
@@ -39,6 +39,7 @@ router.use('/api', api.routes()); // api 라우트 적용
 
 //라우터 적용 전에 bodyParser 적용
 app.use(bodyParser());
+app.use(jwtMiddleware);
 
 // router.get('/', ctx => {
 //     ctx.body = '홈';
@@ -58,7 +59,6 @@ app.use(bodyParser());
 
 // app 인스턴스에 라우터 적용 (middleware)
 app.use(router.routes()).use(router.allowedMethods());
-app.use(jwtMiddleware);
 
 // Middle Ware 설정 next() 미들웨어 역할
 // app.use(async(ctx, next) => {
