@@ -25,7 +25,7 @@ const PostContent = styled.div`
   color: ${palette.gray[8]};
 `;
 
-const PostViewer = ({ post, error, loading }) => {
+const PostView = ({ post, error, loading }) => {
   // 에러발생시
   if (error) {
     if (error.response && error.response.status === 404) {
@@ -57,4 +57,4 @@ const PostViewer = ({ post, error, loading }) => {
   );
 };
 
-export default PostViewer;
+export default PostView;

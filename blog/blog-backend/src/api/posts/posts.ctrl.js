@@ -3,8 +3,42 @@ import Post from '../../models/post';
 import mongoose from 'mongoose';
 // Request Body 검증
 import Joi from 'joi';
+// html 필터링
+import sanitizeHtml from 'sanitize-html';
 
 const { ObjectId } = mongoose.Types;
+
+const sanitizeOption = {
+  allowedTags: [
+    'h1',
+    'h2',
+    'b',
+    'i',
+    'u',
+    's',
+    'p',
+    'ul',
+    'ol',
+    'li',
+    'blockquote',
+    'a',
+    'img',
+  ],
+  allowedAttributes: {
+    a: ['href', 'name', 'target'],
+    img: ['src'],
+    li: ['class'],
+  },
+  allowedSchemes: ['data', 'http'],
+};
+
+// html없애고 내용이 너무 길면 200로 제한하는 함수
+const removeHtmlAndShorten = (body) => {
+  const filtered = sanitizeHtml(body, {
+    allowedTags: [],
+  });
+  return filtered.length < 200 ? filtered : `${filtered.slice(0, 200)}...`;
+};
 
 // 작성자만 포스팅 수정하거나 삭제
 export const getPostById = async (ctx, next) => {
@@ -75,7 +109,7 @@ export const write = async (ctx) => {
   const { title, body, tags } = ctx.request.body;
   const post = new Post({
     title,
-    body,
+    body: sanitizeHtml(body, sanitizeOption),
     tags,
     user: ctx.state.user,
   });
@@ -116,7 +150,8 @@ export const list = async (ctx) => {
       .map((post) => ({
         ...post,
         body:
-          post.body.length < 200 ? post.body : `${post.body.slice(0, 200)}...`,
+          // post.body.length < 200 ? post.body : `${post.body.slice(0, 200)}...`,
+          removeHtmlAndShorten(post.body),
       }));
   } catch (e) {
     ctx.throw(500, e);
@@ -160,6 +195,12 @@ export const remove = async (ctx) => {
 export const update = async (ctx) => {
   const { id } = ctx.params;
 
+  const nextData = { ...ctx.request.body }; // 객체를 복사하고
+  // body 값이 주어졌으면 HTML 필터링
+  if (nextData.body) {
+    nextData.body = sanitizeHtml(nextData.body, sanitizeOption);
+  }
+
   // write에서 사용한 schema와 비슷한데, required()가 없음
   const schema = Joi.object().keys({
     title: Joi.string(),
@@ -176,7 +217,7 @@ export const update = async (ctx) => {
   }
 
   try {
-    const post = await Post.findByIdAndUpdate(id, ctx.request.body, {
+    const post = await Post.findByIdAndUpdate(id, nextData, {
       new: true, // 이값을 설정하면 업데이트된 데이터가 반환
       // false일땐 업데이트되기 전의 데이터를 반환
     }).exec();

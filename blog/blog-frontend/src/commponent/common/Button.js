@@ -19,16 +19,21 @@ const buttonStyle = css`
     background: ${palette.gray[6]};
   }
 
-  ${props =>
+  &:disabled {
+    background: ${palette.gray[3]};
+    color: ${palette.gray[5]};
+    cursor: not-allowed;
+  }
+
+  ${(props) =>
     props.fullWidth &&
     css`
       padding-top: 0.75rem;
       padding-bottom: 0.75rem;
       width: 100%
       font-size: 1.125rem;
-      `
-    }
-  ${props =>
+      `}
+  ${(props) =>
     props.cyan &&
     css`
       background: ${palette.cyan[5]};
@@ -36,17 +41,22 @@ const buttonStyle = css`
         background: ${palette.cyan[4]};
       }
     `}
-  `;
+`;
 
-  const StyledButton = styled.button`
-    ${buttonStyle}
-  `;
+const StyledButton = styled.button`
+  ${buttonStyle}
+`;
 
-  const StyledLink = styled(Link)
-  `${buttonStyle}`;
+const StyledLink = styled(Link)`
+  ${buttonStyle}
+`;
 
-  const Button = props => {
-    return props.to ? (<StyledLink {...props} cyan={props.cyan ? 1:0} />) : (<StyledButton {...props}/>);
-  };
+const Button = (props) => {
+  return props.to ? (
+    <StyledLink {...props} cyan={props.cyan ? 1 : 0} />
+  ) : (
+    <StyledButton {...props} />
+  );
+};
 
-  export default Button;
+export default Button;

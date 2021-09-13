@@ -16,6 +16,10 @@ const WriteActionButtonContainer = ({ history }) => {
 
   // 포스트 등록
   const onPublish = () => {
+    if (!title || !body) {
+      alert('제목과 내용을 입력해주세요');
+      return;
+    }
     dispatch(
       writePost({
         title,
@@ -42,5 +46,5 @@ const WriteActionButtonContainer = ({ history }) => {
   }, [history, post, postError]);
   return <WriteActionButtons onPublish={onPublish} onCancel={onCancel} />;
 };
-
+// 라우트가 아닌 컴포넌트에서 history 객체를 사용하기 위해 withRouter
 export default withRouter(WriteActionButtonContainer);

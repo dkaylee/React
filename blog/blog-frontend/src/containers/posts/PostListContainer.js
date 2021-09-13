@@ -6,6 +6,7 @@ import qs from 'qs';
 import PostList from '../../commponent/posts/PostList';
 import { withRouter } from 'react-router';
 
+// listPosts api 호출
 const PostListContainer = ({ location, match }) => {
   const dispatch = useDispatch();
   const { posts, error, loading, user } = useSelector(
@@ -18,9 +19,12 @@ const PostListContainer = ({ location, match }) => {
   );
 
   useEffect(() => {
-    const { tag, username, page } = qs.parse(location.search, {
+    const { username, tag, page } = qs.parse(location.search, {
       ignoreQueryPrefix: true,
     });
+    // const { tag, username, page } = qs.parse(location.search, {
+    //   ignoreQueryPrefix: true,
+    // });
     dispatch(listPosts({ tag, username, page }));
   }, [dispatch, location.search]);
 

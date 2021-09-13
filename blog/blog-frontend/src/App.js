@@ -5,12 +5,18 @@ import LoginPage from './pages/LoginPage';
 import PostPage from './pages/PostPage';
 import RegisterPage from './pages/RegisterPage';
 import WritePage from './pages/WritePage';
+import MainPage from './pages/MainPage';
 
 function App() {
   return (
     <>
       {/* path에 배열을 넣으면 한 라우트 컴포넌트에 여러 개의 경로를 쉽게 사용할 수 있음 */}
-      <Route component={PostListPage} path={['/@:username', '/']} exact />
+      <Route component={MainPage} path={'/'} exact />
+      <Route
+        component={PostListPage}
+        path={['/@:username', '/postlist']}
+        exact
+      />
       <Route component={LoginPage} path="/login" />
       <Route component={PostPage} path="/@:username/:postId" />
       <Route component={RegisterPage} path="/register" />

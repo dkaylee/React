@@ -63,7 +63,7 @@ const TagListBlock = styled.div`
 `;
 
 // React.memo를 사용하여 tag 값이 바뀔 때만 리렌더링되도록 처리
-const TagItem = React.memo(({ tag, onRemove, onChangeTags }) => (
+const TagItem = React.memo(({ tag, onRemove }) => (
   <Tag onClick={() => onRemove(tag)}>#{tag}</Tag>
 ));
 
@@ -82,13 +82,14 @@ const TagBox = ({ tags, onChangeTags }) => {
   const insertTag = useCallback(
     (tag) => {
       if (!tag) return; // 공백이면 추가하지 않음
-      if (localTags.includes(tag)) return; //이미 존재하면 추가하지 않음
+      if (localTags && localTags.includes(tag)) return; //이미 존재하면 추가하지 않음
       if (localTags === null || localTags === undefined) {
-        console.log('localTags가 null입니다.');
+        console.log('localTags가 null입니다.', localTags);
         return;
       }
       const nextTags = [...localTags, tag];
       // setLocalTags([...localTags, tag]);
+      console.log('nextTags:', nextTags);
       setLocalTags(nextTags);
       onChangeTags(nextTags);
     },
@@ -100,25 +101,28 @@ const TagBox = ({ tags, onChangeTags }) => {
       const nextTags = localTags.filter((t) => t !== tag);
       // setLocalTags(localTags.filter((t) => t !== tag));
       setLocalTags(nextTags);
-      onChangeTags(nextTags);
+      // onChangeTags(nextTags);
     },
-    [localTags, onChangeTags],
+    // [localTags, onChangeTags],
+    [localTags],
   );
 
   const onChange = useCallback((e) => {
+    console.log('e.target.value:', e.target.value);
     setInput(e.target.value);
   }, []);
 
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
+      console.log('input.trim():', input.trim());
       insertTag(input.trim()); //앞뒤 공백을 없앤 후 등록
       setInput(''); // input 초기화
     },
     [input, insertTag],
   );
 
-  // tag값이 바뀔 때
+  // tags 값이 바뀔 때
   useEffect(() => {
     setLocalTags(tags);
   }, [tags]);

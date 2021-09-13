@@ -19,7 +19,7 @@ const TitleInput = styled.input`
   border-bottom: 1px solid ${palette.gray[4]};
   margin-bottom: 2rem;
   width: 100%;
-  color: ${palette.gray[4]};
+  color: ${palette.gray[9]};
 `;
 
 const QuilWrapper = styled.div`
