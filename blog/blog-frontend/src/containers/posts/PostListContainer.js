@@ -7,7 +7,7 @@ import PostList from '../../commponent/posts/PostList';
 import { withRouter } from 'react-router';
 
 // listPosts api 호출
-const PostListContainer = ({ location, match }) => {
+const PostListContainer = ({ location }) => {
   const dispatch = useDispatch();
   const { posts, error, loading, user } = useSelector(
     ({ posts, loading, user }) => ({

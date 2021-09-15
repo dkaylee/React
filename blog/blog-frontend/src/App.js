@@ -14,7 +14,8 @@ function App() {
       <Route component={MainPage} path={'/'} exact />
       <Route
         component={PostListPage}
-        path={['/@:username', '/postlist']}
+        path="/postlist"
+        // path={['/@:username', '/postlist']}
         exact
       />
       <Route component={LoginPage} path="/login" />

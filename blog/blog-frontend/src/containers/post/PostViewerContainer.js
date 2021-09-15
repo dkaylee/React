@@ -15,6 +15,9 @@ const PostViewerContainer = ({ match }) => {
     loading: loading['post/READ_POST'],
   }));
 
+  console.log('post::', post);
+  console.log('postId::', postId);
+
   useEffect(() => {
     dispatch(readPost(postId));
     // 언마운트될때 리덕스에서 포스트 데이터 없애기
@@ -22,8 +25,6 @@ const PostViewerContainer = ({ match }) => {
       dispatch(unloadPost());
     };
   }, [dispatch, postId]);
-
-  console.log('post::', post);
 
   return <PostView post={post} loading={loading} error={error} />;
 };

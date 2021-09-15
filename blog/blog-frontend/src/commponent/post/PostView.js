@@ -26,6 +26,8 @@ const PostContent = styled.div`
 `;
 
 const PostView = ({ post, error, loading }) => {
+  console.log('post:', post);
+
   // 에러발생시
   if (error) {
     if (error.response && error.response.status === 404) {

@@ -8,14 +8,14 @@ const PaginationBlock = styled.div`
   margin: auto;
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
 `;
 
 const PageNumber = styled.div``;
 
 const buildLink = ({ username, tag, page }) => {
   const query = qs.stringify({ tag, page });
-  return username ? `/@${username}?${query}` : `/?${query}`;
+  return username ? `/@${username}?${query}` : `postlist/?${query}`;
 };
 
 const Pagination = ({ page, lastPage, username, tag }) => {

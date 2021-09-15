@@ -142,17 +142,16 @@ export const list = async (ctx) => {
       .sort({ _id: -1 })
       .limit(10)
       .skip((page - 1) * 10)
+      .lean()
       .exec();
     const postCount = await Post.countDocuments(query).exec();
     ctx.set('Last-Page', Math.ceil(postCount / 10));
-    ctx.body = posts
-      .map((post) => post.toJSON())
-      .map((post) => ({
-        ...post,
-        body:
-          // post.body.length < 200 ? post.body : `${post.body.slice(0, 200)}...`,
-          removeHtmlAndShorten(post.body),
-      }));
+    ctx.body = posts.map((post) => ({
+      ...post,
+      body:
+        // post.body.length < 200 ? post.body : `${post.body.slice(0, 200)}...`,
+        removeHtmlAndShorten(post.body),
+    }));
   } catch (e) {
     ctx.throw(500, e);
   }
@@ -173,7 +172,9 @@ export const list = async (ctx) => {
 //         ctx.throw(500, e);
 //     }
 // };
-export const read = (ctx) => {
+
+// GET /api/posts/:id
+export const read = async (ctx) => {
   ctx.body = ctx.state.post;
 };
 
