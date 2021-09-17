@@ -1,6 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import createRequestSaga, {
-  createRequestActionType,
+  createRequestActionTypes,
 } from '../lib/createRequestSaga';
 import * as authAPI from '../lib/api/auth';
 import { takeLatest, call } from 'redux-saga/effects';
@@ -9,7 +9,7 @@ import { takeLatest, call } from 'redux-saga/effects';
 const TEMP_SET_USER = 'user/TEMP_SET_USER'; // 새로고침 이후 임시 로그인 처리
 // 회원정보확인
 const [CHECK, CHECK_SUCCESS, CHECK_FAILURE] =
-  createRequestActionType('user/CHECK');
+  createRequestActionTypes('user/CHECK');
 
 const LOGOUT = 'user/LOGOUT';
 

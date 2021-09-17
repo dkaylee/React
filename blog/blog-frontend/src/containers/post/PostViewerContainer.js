@@ -15,7 +15,6 @@ const PostViewerContainer = ({ match }) => {
     loading: loading['post/READ_POST'],
   }));
 
-  console.log('post::', post);
   console.log('postId::', postId);
 
   useEffect(() => {
@@ -25,6 +24,8 @@ const PostViewerContainer = ({ match }) => {
       dispatch(unloadPost());
     };
   }, [dispatch, postId]);
+
+  console.log('post::', post);
 
   return <PostView post={post} loading={loading} error={error} />;
 };

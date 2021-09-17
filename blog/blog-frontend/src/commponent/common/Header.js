@@ -55,7 +55,7 @@ const Spacer = styled.div`
 
 const UserInfo = styled.div`
   font-weight: 800;
-  margin-right: 1rem;
+  margin-right: 3rem;
 `;
 
 const Menubar = styled.a`
