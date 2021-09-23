@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const ImgPreviewBlock = styled.div`
-  margin-top: 2rem;
+  margin: 3rem;
 `;
 
-const ImgPreviewBox = styled.div`
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  height: 250px;
+const ImgPreviewBox = styled.img`
+  padding: 2rem;
+  height: 200px;
 `;
 
 const FileUpload = () => {
