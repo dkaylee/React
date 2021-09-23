@@ -35,7 +35,7 @@ const Wrapper = styled(Responsive)`
     list-style: none;
     justify-content: space-around;
     width: 50%;
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 620px) {
       display: none;
     }
   }
@@ -65,7 +65,7 @@ const Menubar = styled.a`
   position: absolute;
   right: 100px;
   height: 97px;
-  @media screen and (min-width: 500px) {
+  @media screen and (min-width: 620px) {
     display: none;
   }
 `;
@@ -105,11 +105,6 @@ const Header = ({ user, onLogout }) => {
             <li>
               <Link to="/postlist" className="navbar_menu">
                 Postlist
-              </Link>
-            </li>
-            <li>
-              <Link to="/write" className="navbar_menu">
-                Writepage
               </Link>
             </li>
             <li>

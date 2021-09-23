@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 import palette from '../../styles/palette';
 import Responsive from '../common/Responsive';
@@ -25,7 +26,7 @@ const PostContent = styled.div`
   color: ${palette.gray[8]};
 `;
 
-const PostView = ({ post, error, loading }) => {
+const PostView = ({ post, error, loading, actionButtons }) => {
   console.log('post:', post);
 
   // 에러발생시
@@ -45,6 +46,9 @@ const PostView = ({ post, error, loading }) => {
 
   return (
     <PostViewBlock>
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
       <PostHead>
         <h1>{title}</h1>
         <SubInfo
@@ -54,6 +58,7 @@ const PostView = ({ post, error, loading }) => {
         />
         <Tags tags={tags} />
       </PostHead>
+      {actionButtons}
       <PostContent dangerouslySetInnerHTML={{ __html: body }} />
     </PostViewBlock>
   );
