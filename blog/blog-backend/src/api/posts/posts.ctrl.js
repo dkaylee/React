@@ -1,4 +1,5 @@
 import Post from '../../models/post';
+import Upload from '../../models/upload';
 // DB연결
 import mongoose from 'mongoose';
 // Request Body 검증
@@ -77,7 +78,7 @@ export const checkOwnPost = (ctx, next) => {
       body: '내용',
       tags: ['태그1', '태그2']
     }
-  */
+*/
 
 export const checkObjectId = (ctx, next) => {
   const { id } = ctx.params;
@@ -96,6 +97,7 @@ export const write = async (ctx) => {
     title: Joi.string().required(),
     body: Joi.string().required(),
     tags: Joi.array().items(Joi.string()).required(), // 문자열로 이루어진 배열
+    files: Joi.array().items(Joi.string()).required(),
   });
 
   // 검증하고 실패인경우 에러 처리
@@ -107,6 +109,7 @@ export const write = async (ctx) => {
   }
 
   const { title, body, tags } = ctx.request.body;
+
   const post = new Post({
     title,
     body: sanitizeHtml(body, sanitizeOption),

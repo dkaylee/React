@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
+import palette from '../../styles/palette';
 const ImgPreviewBlock = styled.div`
   margin: 3rem;
 `;
 
-const ImgPreviewBox = styled.img`
+const ImgBox = styled.img`
   padding: 2rem;
   height: 200px;
+`;
+
+const InputBtn = styled.label`
+  padding: 6px 25px;
+  background-color: ${palette.cyan[4]};
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
 `;
 
 const FileUpload = () => {
@@ -15,7 +23,7 @@ const FileUpload = () => {
   const [imgFile, setImgFile] = useState(''); // 파일
 
   const handleChangeFile = (e) => {
-    console.log(e.target.files);
+    console.log('fileinfo', e.target.files);
     setImgFile(e.target.files);
     //fd.append("file", event.target.files)
     setImageBase64([]);
@@ -39,15 +47,17 @@ const FileUpload = () => {
 
   return (
     <>
+      <InputBtn for="file">업로드</InputBtn>
       <input
         type="file"
         id="file"
         onChange={handleChangeFile}
         multiple="multiple"
+        style={{ display: 'none' }}
       />
       <ImgPreviewBlock>
         {imgBase64.map((img) => (
-          <ImgPreviewBox src={img} />
+          <ImgBox src={img} key={img} />
         ))}
       </ImgPreviewBlock>
     </>

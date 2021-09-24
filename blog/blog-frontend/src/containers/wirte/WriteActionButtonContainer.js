@@ -6,16 +6,16 @@ import WriteActionButtons from '../../commponent/write/WriteActionButton';
 
 const WriteActionButtonContainer = ({ history }) => {
   const dispatch = useDispatch();
-  const { title, body, tags, post, postError, originalPostId } = useSelector(
-    ({ write }) => ({
+  const { title, body, tags, files, post, postError, originalPostId } =
+    useSelector(({ write }) => ({
       title: write.title,
       body: write.body,
       tags: write.tags,
+      files: write.files,
       post: write.post,
       postError: write.postError,
       originalPostId: write.originalPostId,
-    }),
-  );
+    }));
 
   // 포스트 등록
   const onPublish = () => {
@@ -24,7 +24,7 @@ const WriteActionButtonContainer = ({ history }) => {
       return;
     }
     if (originalPostId) {
-      dispatch(updatePost({ title, body, tags, id: originalPostId }));
+      dispatch(updatePost({ title, body, tags, files, id: originalPostId }));
       return;
     }
     dispatch(
@@ -32,6 +32,7 @@ const WriteActionButtonContainer = ({ history }) => {
         title,
         body,
         tags,
+        files,
       }),
     );
   };
