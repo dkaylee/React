@@ -8,7 +8,7 @@ const PostActionButtonsBlock = styled.div`
   justify-content: flex-end;
   margin-bottom: 2rem;
   margin-top: -1.5rem;
-  margin-right: 2rem;
+  margin-right: 6rem;
 `;
 
 const ActionButton = styled.button`

@@ -25,9 +25,9 @@ const Wrapper = styled(Responsive)`
     font-size: 1.25rem;
     font-weight: 800;
     margin: 0 2rem;
-		// position: flex;
+    // position: flex;
     &:hover {
-      color:${palette.gray[5]};
+      color: ${palette.gray[5]};
     }
   }
   .right {
@@ -43,7 +43,7 @@ const Wrapper = styled(Responsive)`
     list-style: none;
     justify-content: space-around;
     padding-left: 20%;
-    
+
     @media screen and (max-width: 920px) {
       display: none;
     }
@@ -65,21 +65,31 @@ const Wrapper = styled(Responsive)`
 //   height: 4rem;
 // `;
 
-const UserInfo = styled.a`
+const UserInfo = styled.button`
   font-size: 0.8rem;
   font-weight: 600;
   margin-right: 1rem;
   color: ${palette.gray[8]};
+  background: transparent;
+  border: none;
 `;
 
-const Menubar = styled.a`
+const Menubar = styled.button`
+  padding: 0.5rem;
   display: flex;
+  background: transparent;
+  border: none;
   align-items: center;
   font-size: 30px;
   position: absolute;
   right: 30px;
-  height: 97px;
-  color:${palette.gray[7]};
+  color: ${palette.gray[7]};
+  cursor: pointer;
+  &:hover {
+    border-radius: 4rem;
+    background: ${palette.gray[1]};
+    color: ${palette.cyan[7]};
+  }
   @media screen and (min-width: 920px) {
     display: none;
   }
@@ -98,10 +108,10 @@ const Menubar = styled.a`
 // `;
 
 const Header = ({ user, onLogout }) => {
-  const [menu, setmenu] = useState(false);
+  const [toggleBar, setToggleBar] = useState(true);
 
   const onClick = () => {
-    setmenu(menu);
+    setToggleBar(!toggleBar);
   };
 
   return (
@@ -129,13 +139,15 @@ const Header = ({ user, onLogout }) => {
             </li>
           </ul>
 
-          <Menubar href="#" onClick={onClick}>
+          <Menubar onClick={onClick}>
             <FiAlignJustify />
           </Menubar>
 
           {user ? (
             <div className="right">
-              <Link to={`/?user=${user.username}`}><UserInfo>{user.username}</UserInfo></Link>
+              <Link to={`/?user=${user.username}`}>
+                <UserInfo>{user.username}</UserInfo>
+              </Link>
               <Button onClick={onLogout}>로그아웃</Button>
             </div>
           ) : (

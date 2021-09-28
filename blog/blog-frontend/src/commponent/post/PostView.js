@@ -6,12 +6,13 @@ import Responsive from '../common/Responsive';
 import SubInfo from '../common/SubInfo';
 import Tags from '../common/Tags';
 
-const PostViewBlock = styled.div`
-  margin-top: 2rem;
+const PostViewBlock = styled(Responsive)`
+  margin: 2rem;
 `;
 
 const PostHead = styled.div`
   border-bottom: 1px solid ${palette.gray[2]};
+  margin-right: 6rem;
   padding-bottom: 3rem;
   margin-bottom: 3rem;
   h1 {

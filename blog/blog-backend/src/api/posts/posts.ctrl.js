@@ -1,5 +1,4 @@
 import Post from '../../models/post';
-import Upload from '../../models/upload';
 // DB연결
 import mongoose from 'mongoose';
 // Request Body 검증
