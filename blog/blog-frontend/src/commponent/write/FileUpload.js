@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import palette from '../../styles/palette';
+
+const FileuploadBlock = styled.div`
+  padding: 3rem; 
+`;
+
 const ImgPreviewBlock = styled.div`
   margin: 3rem;
 `;
@@ -47,6 +52,7 @@ const FileUpload = () => {
 
   return (
     <>
+
       <InputBtn for="file">업로드</InputBtn>
       <input
         type="file"

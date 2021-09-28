@@ -23,16 +23,29 @@ const AuthTemplateBlock = styled.div`
 // 흰색박스
 const WhiteBox = styled.div`
     .logo-area {
+        margin-top: -30px;
+        margin-left: 15px;
+        border-radius: 10px;
+        width: 70%;
+        background-color: #6cb2e2;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        color: white;
         display: block;
-        padding-bottom: 2rem;
+        padding: 2.5rem;
         text-align: center;
-        font-weight: bold;
-        letter-spacing: 2px;
+        font-weight: 600;
+        font-size: 1rem;
+        letter-spacing: 5px;
+    }
+    .input-area{
+        display:block;
+        padding: 2rem;
+        text-align: center;
     }
     color: #6cb2e2;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
     width: 360px;
+    height: 450px;
     background: white;
     border-radius: 10px;
     
@@ -48,6 +61,8 @@ const AuthTemplate = ({ children }) => {
             <WhiteBox>
                 <div className="logo-area">
                     <Link to="/">React{/*<img className={LogoImg} alt="Logo" src={logo}/>*/}</Link>
+                </div>
+                <div className="input-area">
                     {children}
                 </div>
             </WhiteBox>

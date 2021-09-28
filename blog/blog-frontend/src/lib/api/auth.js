@@ -1,4 +1,5 @@
 import client from './client';
+import qs from 'qs';
 
 // 로그인
 export const login = ({ username, password }) =>
@@ -13,3 +14,11 @@ export const check = () => client.get('/api/auth/check');
 
 // 로그아웃
 export const logout = () => client.post('/api/auth/logout');
+
+// 회원정보
+export const userInfo = ({ username}) => {
+  const queryString = qs.stringify({
+    username
+  });
+  return client.get(`/api/auth/${queryString}`);
+}

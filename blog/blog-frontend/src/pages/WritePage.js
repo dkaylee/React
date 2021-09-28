@@ -9,12 +9,18 @@ import TagBoxContainer from '../containers/wirte/TagBoxContainer';
 import WriteActionButtonContainer from '../containers/wirte/WriteActionButtonContainer';
 import { Helmet } from 'react-helmet-async';
 import FileUpload from '../commponent/write/FileUpload';
+import styled from 'styled-components';
+
+const WritePageBlock = styled.div`
+padding: 5rem;
+`;
 
 const WritePage = () => {
   return (
     <>
       <HeaderContainer />
       <Responsive>
+        <WritePageBlock>
         <Helmet>
           <title>글작성하기</title>
         </Helmet>
@@ -23,6 +29,7 @@ const WritePage = () => {
         <TagBoxContainer />
 
         <WriteActionButtonContainer />
+        </WritePageBlock>
       </Responsive>
     </>
   );

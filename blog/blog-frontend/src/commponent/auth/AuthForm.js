@@ -3,14 +3,19 @@ import styled from "styled-components";
 import palette from "../../styles/palette";
 import Button from "../common/Button.js"
 import { Link } from "react-router-dom";
+import { FaUserAlt, FaBook, FaLeaf  } from 'react-icons/fa';
 
 
 // 회원가입 또는 로그인 폼 보여줌
 const AuthFormBlock = styled.div`
     h3 {
-        margin:0;
-        color: ${palette.gray[8]};
-        margin-bottom: 1rem;
+        margin-bottom:2rem;
+        color: ${palette.gray[7]};
+        font-weight: 400;
+    }
+    .icon {
+        color: #6cb2e2;
+	    font-size: 1.5rem;
     }
 `;
 
@@ -18,23 +23,28 @@ const AuthFormBlock = styled.div`
 const StyleInput = styled.input`
     font-size: 1rem;
     border: none;
-    border-bottom: 1px solid ${palette.gray[5]};
+    border-bottom: 1px solid ${palette.gray[3]};
     padding-bottom: 0.5rem;
     outline: none;
     width: 100%;
+
+   placeholder {
+        color: ${palette.gray[1]};
+    }
+
     &:focus {
         color: $oc-teal-7;
-        border-bottom: 1px solid ${palette.gray[7]};
+        border-bottom: 2px solid #6cb2e2;
     }
     &+& {
-        margin-top: 1rem;
+        margin-top: 1.5rem;
     }
 `;
 
 // 폼하단에 로그인 혹은 회원가입 링크를 보여줌
 const Footer = styled.div`
-    margin-top: 2rem;
-    text-align: right;
+    margin-top: 3rem;
+    text-align: center;
     a{
         color:${palette.gray[6]};
         text-decoration: underline;
@@ -45,7 +55,7 @@ const Footer = styled.div`
 `;
 
 const ButtonWithMarginTop = styled(Button)`
-    margin-top: 1rem;
+    margin-top: 2rem;
 `;
 
 const ErrorMessage = styled.div`

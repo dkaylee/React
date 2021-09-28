@@ -5,10 +5,9 @@ import Responsive from '../common/Responsive';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 
-const EditorBlock = styled(Responsive)`
+const EditorBlock = styled.div`
   /* 페이지 위아래 여백 지정 */
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-bottom: 3rem;
 `;
 
 const TitleInput = styled.input`
