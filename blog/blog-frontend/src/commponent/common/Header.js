@@ -7,25 +7,30 @@ import { Link } from 'react-router-dom';
 import palette from '../../styles/palette';
 
 const HeaderBlock = styled.div`
-  max-width: 75em;
+  width: 100%;
   margin: 0 auto;
+  box-shadow: 0 1px 9px 0 rgba(0, 0, 0, 0.14);
+  position: relative;
 `;
 
 // Responsive 컴포넌트 속성에 스타일을 추가해서 새로운 컴포넌트 생성
 const Wrapper = styled(Responsive)`
-  height: 5rem;
+  height: 4rem;
   display: flex;
   align-items: center;
-  // justify-content: space-between;
-  // margin: 0 auto;
-  // position: relative;
+  justify-content: space-between;
+  margin: 0 auto;
+  position: relative;
+  background-color: white;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.14);
 
   .logo {
     color: #6cb2e2;
     font-size: 1.25rem;
     font-weight: 800;
     margin: 0 2rem;
-    // position: flex;
+    position: flex;
+    width: 30%;
     &:hover {
       color: ${palette.gray[5]};
     }
@@ -33,7 +38,7 @@ const Wrapper = styled(Responsive)`
   .right {
     display: flex;
     align-items: center;
-
+    padding-right: 50px;
     @media screen and (max-width: 920px) {
       display: none;
     }
@@ -41,9 +46,7 @@ const Wrapper = styled(Responsive)`
   .navbar_menus {
     display: flex;
     list-style: none;
-    justify-content: space-around;
-    padding-left: 20%;
-
+    position: relative;
     @media screen and (max-width: 920px) {
       display: none;
     }
@@ -51,7 +54,7 @@ const Wrapper = styled(Responsive)`
   .navbar_menu {
     color: #6cb2e2;
     display: inline-block;
-    padding-right: 4rem;
+    padding-right: 2.5rem;
     font-size: 1rem;
     text-decoration: none;
     &:hover {
@@ -82,7 +85,7 @@ const Menubar = styled.button`
   align-items: center;
   font-size: 30px;
   position: absolute;
-  right: 30px;
+  right: 50px;
   color: ${palette.gray[7]};
   cursor: pointer;
   &:hover {
@@ -145,7 +148,7 @@ const Header = ({ user, onLogout }) => {
 
           {user ? (
             <div className="right">
-              <Link to={`/?user=${user.username}`}>
+              <Link to={`/?user=${user._id}`}>
                 <UserInfo>{user.username}</UserInfo>
               </Link>
               <Button onClick={onLogout}>로그아웃</Button>

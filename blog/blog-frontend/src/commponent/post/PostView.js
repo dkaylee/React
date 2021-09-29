@@ -6,8 +6,16 @@ import Responsive from '../common/Responsive';
 import SubInfo from '../common/SubInfo';
 import Tags from '../common/Tags';
 
+import defaultImg from '../../assets/image/defaultImg.png';
+
 const PostViewBlock = styled(Responsive)`
   margin: 2rem;
+
+  img {
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const PostHead = styled.div`
@@ -60,6 +68,7 @@ const PostView = ({ post, error, loading, actionButtons }) => {
         <Tags tags={tags} />
       </PostHead>
       {actionButtons}
+      <img alt={defaultImg} src={defaultImg} />
       <PostContent dangerouslySetInnerHTML={{ __html: body }} />
     </PostViewBlock>
   );

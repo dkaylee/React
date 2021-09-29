@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaUserAlt, FaBook, FaLeaf } from 'react-icons/fa';
-import banner from '../../assets/image/banner.jpg';
-import defaultImg from '../../assets/image/defaultImg.png';
+// import banner from '../../assets/image/banner.jpg';
+// import defaultImg from '../../assets/image/defaultImg.png';
+import Responsive from './Responsive';
 
-const BannerBlock = styled.div`
+const BannerBlock = styled(Responsive)`
   margin: 0;
   padding: 0;
-  width: 100%;
   background-color: #ddd;
   background-size: cover;
   background-position: bottom;
@@ -17,7 +17,6 @@ const BannerBlock = styled.div`
   position: relative;
 
   .inner {
-    height: auto;
     position: relative;
     padding-top: 10rem;
     background-position: center;
@@ -38,6 +37,7 @@ const BannerBlock = styled.div`
   .flex div {
     border-right: 2px solid rgba(255, 255, 255, 0.2);
     padding: 0 3em;
+    position: absolute;
   }
   .flex div:last-child {
     border: none;
@@ -56,6 +56,14 @@ const BannerBlock = styled.div`
     margin: 0.5rem 0;
     font-size: 1rem;
   }
+  .flex img {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
   .icon {
     color: #6cb2e2;
     font-size: 1.5rem;
@@ -66,9 +74,7 @@ const Banner = () => {
   return (
     <>
       <BannerBlock>
-        <div className="inner">
-          <img alt={defaultImg} src={banner} />
-        </div>
+        <div className="inner"></div>
         <div className="flex">
           <div>
             <FaBook className="icon" />
@@ -87,6 +93,7 @@ const Banner = () => {
             <h3>편안함</h3>
             <p>창의성과 공감을 통한 편안함</p>
           </div>
+          {/* <img src={banner} alt={defaultImg} /> */}
         </div>
       </BannerBlock>
     </>

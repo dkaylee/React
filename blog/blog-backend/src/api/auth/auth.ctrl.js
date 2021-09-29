@@ -1,6 +1,11 @@
 import Joi from 'joi';
 import User from '../../models/user';
 
+// DB연결
+import mongoose from 'mongoose';
+
+const { ObjectId } = mongoose.Types;
+
 /*
 POST /api/auth/register
 {
@@ -105,4 +110,29 @@ export const check = async (ctx) => {
 export const logout = async (ctx) => {
   ctx.cookies.set('access_token');
   ctx.status = 204; // No Content
+};
+
+export const checkObjectId = (ctx, next) => {
+  const { id } = ctx.params;
+  if (!ObjectId.isValid(id)) {
+    ctx.status = 400; //Bad Request
+    return;
+  }
+  return next();
+};
+
+// 회원정보 GET /api/auth/:id
+export const user = async (ctx) => {
+  const { id } = ctx.params;
+
+  try {
+    const user = await User.findById(id).exec();
+    if (!user) {
+      ctx.status = 404; // not found
+      return;
+    }
+    ctx.body = user;
+  } catch (e) {
+    ctx.throw(500, e);
+  }
 };

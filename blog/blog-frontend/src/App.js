@@ -7,8 +7,7 @@ import RegisterPage from './pages/RegisterPage';
 import WritePage from './pages/WritePage';
 import MainPage from './pages/MainPage';
 import { Helmet } from 'react-helmet-async';
-
-
+import './App.css';
 
 function App() {
   return (

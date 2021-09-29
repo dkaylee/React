@@ -16,9 +16,4 @@ export const check = () => client.get('/api/auth/check');
 export const logout = () => client.post('/api/auth/logout');
 
 // 회원정보
-export const userInfo = ({ username}) => {
-  const queryString = qs.stringify({
-    username
-  });
-  return client.get(`/api/auth/${queryString}`);
-}
+export const user = ({ id }) => client.get(`/api/auth/${id}`);
