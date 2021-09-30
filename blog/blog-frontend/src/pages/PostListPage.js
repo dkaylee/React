@@ -11,8 +11,8 @@ const PostListPage = () => {
     <div>
       <HeaderContainer />
       <Responsive>
-      <PostListContainer />
-      <PaginationContainer />
+        <PostListContainer />
+        <PaginationContainer />
       </Responsive>
     </div>
   );

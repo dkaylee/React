@@ -148,7 +148,7 @@ const Header = ({ user, onLogout }) => {
 
           {user ? (
             <div className="right">
-              <Link to={`/?user=${user._id}`}>
+              <Link to={`/mypage`}>
                 <UserInfo>{user.username}</UserInfo>
               </Link>
               <Button onClick={onLogout}>로그아웃</Button>

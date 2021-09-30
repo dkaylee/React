@@ -8,6 +8,7 @@ import WritePage from './pages/WritePage';
 import MainPage from './pages/MainPage';
 import { Helmet } from 'react-helmet-async';
 import './App.css';
+import UserInfoPage from './pages/UserInfoPage';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
       <Route component={MainPage} path={'/'} exact />
       <Route
         component={PostListPage}
-        path="/postlist"
+        path={'/postlist'}
         // path={['/@:username', '/postlist']}
         exact
       />
@@ -27,6 +28,7 @@ function App() {
       <Route component={PostPage} path="/@:username/:postId" />
       <Route component={RegisterPage} path="/register" />
       <Route component={WritePage} path="/write" />
+      <Route component={UserInfoPage} path="/mypage" />
     </>
   );
 }

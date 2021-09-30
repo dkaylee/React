@@ -121,18 +121,18 @@ export const checkObjectId = (ctx, next) => {
   return next();
 };
 
-// 회원정보 GET /api/auth/:id
-export const user = async (ctx) => {
-  const { id } = ctx.params;
+// // 회원정보 GET /api/auth/:id
+// export const user = async (ctx) => {
+//   const { id } = ctx.params;
 
-  try {
-    const user = await User.findById(id).exec();
-    if (!user) {
-      ctx.status = 404; // not found
-      return;
-    }
-    ctx.body = user;
-  } catch (e) {
-    ctx.throw(500, e);
-  }
-};
+//   try {
+//     const user = await User.findById(id).exec();
+//     if (!user) {
+//       ctx.status = 404; // not found
+//       return;
+//     }
+//     ctx.body = user;
+//   } catch (e) {
+//     ctx.throw(500, e);
+//   }
+// };

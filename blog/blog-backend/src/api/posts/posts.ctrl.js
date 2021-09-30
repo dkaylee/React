@@ -61,6 +61,7 @@ export const getPostById = async (ctx, next) => {
   }
 };
 
+// middleware -> id로 찾은 포스트가 로그인 중인 사용자가 작성한 포스트인지 확인
 export const checkOwnPost = (ctx, next) => {
   const { user, post } = ctx.state;
   if (post.user._id.toString() !== user._id) {
@@ -123,8 +124,10 @@ export const write = async (ctx) => {
   }
 };
 
+// 리스트에서 특정 사용자가 작성한 포스트만 조회 혹은 태그로 조회
 export const list = async (ctx) => {
   // query는 문자열이기때문에 int로 바꿔줘야함
+  // 값이 주어지지 않으면 1을 기본으로 사용
   const page = parseInt(ctx.query.page || '1', 10);
 
   if (page < 1) {

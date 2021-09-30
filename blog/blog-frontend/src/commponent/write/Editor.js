@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import palette from '../../styles/palette';
-import Responsive from '../common/Responsive';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 
