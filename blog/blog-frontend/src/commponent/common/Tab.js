@@ -17,10 +17,6 @@ const TabBlock = styled.div`
   max-width: 100%;
   margin: 2rem 0;
 
-  p {
-    margin: 3rem;
-  }
-
   .tabBtn {
     margin: 0 2rem;
     border: none;
@@ -40,10 +36,6 @@ const TabBlock = styled.div`
       height: 30px;
       display: block;
       margin: 15px;
-    }
-    p {
-      margin: 20px;
-      color: red;
     }
   }
 `;

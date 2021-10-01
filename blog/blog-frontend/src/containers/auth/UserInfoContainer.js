@@ -3,10 +3,10 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router';
 import UserInfo from '../../commponent/auth/UserInfo';
+import { listPosts } from '../../modules/posts';
 import { check } from '../../modules/user';
-import { listPosts } from '../../lib/api/posts';
 
-const UserInfoContainer = ({ match, history }) => {
+const UserInfoContainer = ({ match, location }) => {
   // 마운트될때 user info 읽기 api 요청
   const { userId } = match.params;
   const dispatch = useDispatch();
@@ -22,6 +22,13 @@ const UserInfoContainer = ({ match, history }) => {
   useEffect(() => {
     dispatch(check(userId));
   }, [dispatch, userId]);
+
+  // useEffect(() => {
+  //   const { username } = qs.parse(location.search, {
+  //     ignoreQueryPrefix: true,
+  //   });
+  //   dispatch(listPosts({ username }));
+  // }, [dispatch, location.search]);
 
   return <UserInfo user={user} posts={posts} error={error} />;
 };

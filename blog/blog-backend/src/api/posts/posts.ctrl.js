@@ -236,3 +236,20 @@ export const update = async (ctx) => {
     ctx.throw(500, e);
   }
 };
+
+// 아이디로 포스트 조회
+// GET /api/posts/:id
+export const findByUser = async (ctx) => {
+  const { user } = ctx.state.user;
+  const { post } = ctx.state;
+  try {
+    const mypost = await Post.findById(user._id).exec();
+    if (post.user._id.toString() !== mypost._id) {
+      ctx.status = 404; // not found
+      return;
+    }
+    ctx.body = mypost;
+  } catch (e) {
+    ctx.throw(500, e);
+  }
+};
