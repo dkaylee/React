@@ -212,6 +212,7 @@ export const update = async (ctx) => {
     title: Joi.string(),
     body: Joi.string(),
     tags: Joi.array().items(Joi.string()),
+    files: Joi.array().items(Joi.string()),
   });
 
   // 검증하고 나서 검증 실패인 경우 에러 처리

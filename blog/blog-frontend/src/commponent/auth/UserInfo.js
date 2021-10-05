@@ -55,9 +55,9 @@ const Mypage = ({ user }) => {
 
 const Mypost = ({ posts }) => {
   const { post } = posts;
-  console.log('내가쓴 포스트', post);
+  console.log('내가 쓴 포스트', post);
 
-  return <PostList posts={post}></PostList>;
+  return <PostList posts={post} />;
 };
 
 const UserInfo = ({ user, posts }) => {

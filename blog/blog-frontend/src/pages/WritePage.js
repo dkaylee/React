@@ -12,23 +12,22 @@ import FileUpload from '../commponent/write/FileUpload';
 import styled from 'styled-components';
 
 const WritePageBlock = styled.div`
-padding: 5rem;
+  padding: 5rem;
 `;
 
 const WritePage = () => {
   return (
     <>
-      <HeaderContainer />
       <Responsive>
         <WritePageBlock>
-        <Helmet>
-          <title>글작성하기</title>
-        </Helmet>
-        <EditorContainer />
-        <FileUpload />
-        <TagBoxContainer />
+          <Helmet>
+            <title>글작성하기</title>
+          </Helmet>
+          <EditorContainer />
+          <FileUpload />
+          <TagBoxContainer />
 
-        <WriteActionButtonContainer />
+          <WriteActionButtonContainer />
         </WritePageBlock>
       </Responsive>
     </>

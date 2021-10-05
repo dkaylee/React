@@ -3,6 +3,7 @@
     "bcrypt": "^5.0.1",
     "joi": "^17.4.2",
     "jsonwebtoken": "^8.5.1",
+    "koa-body": "^4.2.0",
     "swiper": "^7.0.5"
   }
 }

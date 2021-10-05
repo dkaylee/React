@@ -13,6 +13,7 @@ export const listPosts = createAction(
   ({ tag, username, page }) => ({ tag, username, page }),
 );
 
+export const postbyUser = createAction(LIST_POSTS);
 const listPostsSaga = createRequestSaga(LIST_POSTS, postsAPI.listPosts);
 
 export function* postsSaga() {

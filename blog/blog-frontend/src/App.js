@@ -9,6 +9,7 @@ import MainPage from './pages/MainPage';
 import { Helmet } from 'react-helmet-async';
 import './App.css';
 import UserInfoPage from './pages/UserInfoPage';
+import HeaderContainer from './containers/common/HeaderContainer';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Helmet>
         <title>React</title>
       </Helmet>
+      <HeaderContainer />
       {/* path에 배열을 넣으면 한 라우트 컴포넌트에 여러 개의 경로를 쉽게 사용할 수 있음 */}
       <Route component={MainPage} path={'/'} exact />
       <Route

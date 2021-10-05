@@ -9,7 +9,6 @@ import Responsive from '../commponent/common/Responsive';
 const PostListPage = () => {
   return (
     <div>
-      <HeaderContainer />
       <Responsive>
         <PostListContainer />
         <PaginationContainer />

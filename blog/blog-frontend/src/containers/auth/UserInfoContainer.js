@@ -5,6 +5,7 @@ import { withRouter } from 'react-router';
 import UserInfo from '../../commponent/auth/UserInfo';
 import { listPosts } from '../../modules/posts';
 import { check } from '../../modules/user';
+import qs from 'qs';
 
 const UserInfoContainer = ({ match, location }) => {
   // 마운트될때 user info 읽기 api 요청
@@ -22,13 +23,6 @@ const UserInfoContainer = ({ match, location }) => {
   useEffect(() => {
     dispatch(check(userId));
   }, [dispatch, userId]);
-
-  // useEffect(() => {
-  //   const { username } = qs.parse(location.search, {
-  //     ignoreQueryPrefix: true,
-  //   });
-  //   dispatch(listPosts({ username }));
-  // }, [dispatch, location.search]);
 
   return <UserInfo user={user} posts={posts} error={error} />;
 };

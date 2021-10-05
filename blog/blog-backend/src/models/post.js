@@ -4,7 +4,14 @@ const PostSchema = new Schema({
   title: String,
   body: String,
   tags: [String], // 문자열로 이루어진 배열
-  files: [String],
+  files: [
+    {
+      filename: String,
+      filesize: String,
+      filepath: String,
+      type: String,
+    },
+  ],
   publishedDate: {
     type: Date,
     default: Date.now, // 현재 날짜를 기본 값으로 지정
@@ -16,4 +23,5 @@ const PostSchema = new Schema({
 });
 
 const Post = mongoose.model('Post', PostSchema);
+
 export default Post;

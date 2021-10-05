@@ -1,13 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaUserAlt, FaBook, FaLeaf } from 'react-icons/fa';
-// import banner from '../../assets/image/banner.jpg';
-// import defaultImg from '../../assets/image/defaultImg.png';
-import Responsive from './Responsive';
+import banner from '../../assets/image/banner.jpg';
+import defaultImg from '../../assets/image/defaultImg.png';
 
-const BannerBlock = styled(Responsive)`
-  margin: 0;
-  padding: 0;
+const BannerBlock = styled.div`
   background-color: #ddd;
   background-size: cover;
   background-position: bottom;
@@ -93,7 +90,6 @@ const Banner = () => {
             <h3>편안함</h3>
             <p>창의성과 공감을 통한 편안함</p>
           </div>
-          {/* <img src={banner} alt={defaultImg} /> */}
         </div>
       </BannerBlock>
     </>
