@@ -109,11 +109,17 @@ export const write = async (ctx) => {
   }
 
   const { title, body, tags } = ctx.request.body;
+  const { files } = ctx.request.files.files;
+  // let files = [];
+  // for (let i = 0; i < file.length; i++) {
+  //   files.push(file[i].path);
+  // }
 
   const post = new Post({
     title,
     body: sanitizeHtml(body, sanitizeOption),
     tags,
+    files,
     user: ctx.state.user,
   });
   try {
@@ -239,17 +245,18 @@ export const update = async (ctx) => {
 };
 
 // 아이디로 포스트 조회
-// GET /api/posts/:id
-export const findByUser = async (ctx) => {
-  const { user } = ctx.state.user;
-  const { post } = ctx.state;
+// GET /api/posts/mypost
+export const mypost = async (ctx) => {
+  const { user } = ctx.state;
+
   try {
-    const mypost = await Post.findById(user._id).exec();
-    if (post.user._id.toString() !== mypost._id) {
-      ctx.status = 404; // not found
-      return;
+    if (user._id.toString() !== user._id) {
+      ctx.status = 403;
     }
-    ctx.body = mypost;
+    const mypost = await Post.findById(user._id).exec();
+    ctx.body = mypost.map((post) => ({
+      ...post,
+    }));
   } catch (e) {
     ctx.throw(500, e);
   }

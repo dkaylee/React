@@ -3,9 +3,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router';
 import UserInfo from '../../commponent/auth/UserInfo';
-import { listPosts } from '../../modules/posts';
+import { postbyUser } from '../../modules/posts';
 import { check } from '../../modules/user';
-import qs from 'qs';
 
 const UserInfoContainer = ({ match, location }) => {
   // 마운트될때 user info 읽기 api 요청

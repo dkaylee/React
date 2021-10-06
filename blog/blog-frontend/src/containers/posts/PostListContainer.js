@@ -22,9 +22,6 @@ const PostListContainer = ({ location }) => {
     const { username, tag, page } = qs.parse(location.search, {
       ignoreQueryPrefix: true,
     });
-    // const { tag, username, page } = qs.parse(location.search, {
-    //   ignoreQueryPrefix: true,
-    // });
     dispatch(listPosts({ tag, username, page }));
   }, [dispatch, location.search]);
 

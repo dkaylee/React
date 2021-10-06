@@ -6,10 +6,7 @@ const PostSchema = new Schema({
   tags: [String], // 문자열로 이루어진 배열
   files: [
     {
-      filename: String,
-      filesize: String,
-      filepath: String,
-      type: String,
+      path: String,
     },
   ],
   publishedDate: {

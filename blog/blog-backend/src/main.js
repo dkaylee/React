@@ -15,12 +15,15 @@ import mongoose from 'mongoose';
 
 import api from './api';
 import jwtMiddleware from './lib/jwtMiddleware';
-import multer from 'koa-multer';
+// import multer from 'koa-multer';
 import cors from 'koa-cors';
+// middleware: upload를 위해 ctx.request.body.files로 가져옴
+import koaBody from 'koa-body';
 // import createFakeData from './createFakeData';
 
 //비구조화 할당을 통해 process.env 내부 값에 대한 레퍼런스 만들기
 const { PORT, MONGO_URI } = process.env;
+const path = require('path');
 
 mongoose
   .connect(MONGO_URI, { useNewUrlParser: true })
@@ -35,9 +38,9 @@ mongoose
 const app = new Koa();
 const router = new Router();
 
-const upload = multer({
-  dest: __dirname + '/uploads/', // 이미지 업로드 경로
-});
+// const upload = multer({
+//   dest: __dirname + '/uploads/', // 이미지 업로드 경로
+// });
 
 //라우터 설정
 router.use('/api', api.routes()); // api 라우트 적용
@@ -46,6 +49,16 @@ router.use('/api', api.routes()); // api 라우트 적용
 app.use(bodyParser());
 app.use(jwtMiddleware);
 app.use(cors()); // Test를 위해 세팅 "실제서버에 배포할 때는 아이피를 설정"
+app.use(
+  koaBody({
+    multipart: true,
+    formidable: {
+      uploadDir: path.join(__dirname, 'public/uploads'),
+      maxFileSize: 200 * 1024 * 1024, //Max설정 기본제한을 초과하면 잘못 보고됨
+      keepExtensions: true,
+    },
+  }),
+);
 
 // router.get('/', ctx => {
 //     ctx.body = '홈';

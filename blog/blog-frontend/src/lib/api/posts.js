@@ -27,4 +27,4 @@ export const updatePost = ({ id, title, body, tags, files }) =>
 
 export const removePost = (id) => client.delete(`/api/posts/${id}`);
 
-export const postbyUser = ({ id }) => client.get(`/api/posts/${id}`);
+export const postbyUser = (id) => client.get(`/api/posts/${id}`);

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useCallback } from 'react';
 import styled from 'styled-components';
 import palette from '../../styles/palette';
 
@@ -9,6 +10,7 @@ const ImgPreviewBlock = styled.div`
 const ImgBox = styled.img`
   padding: 2rem;
   height: 200px;
+  cursor: pointer;
 `;
 
 const InputBtn = styled.label`
@@ -19,12 +21,12 @@ const InputBtn = styled.label`
   cursor: pointer;
 `;
 
-const FileUpload = () => {
+const FileUpload = ({ files, onChangeFiles }) => {
   const [imgBase64, setImageBase64] = useState([]); // 미리보기 파일 base64
   const [imgFile, setImgFile] = useState(''); // 파일
 
   const handleChangeFile = (e) => {
-    console.log('fileinfo', e.target.files);
+    console.log('File Info: ', e.target.files);
     setImgFile(e.target.files);
     //fd.append("file", event.target.files)
     setImageBase64([]);
@@ -41,10 +43,20 @@ const FileUpload = () => {
             setImageBase64((imgBase64) => [...imgBase64, base64sub]);
             // 파일 base64 상태 업데이트
           }
+          console.log('base64sub: ', base64sub);
         };
       }
     }
   };
+
+  const onRemove = useCallback(
+    (file) => {
+      console.log('file: ', file);
+      const nextFiles = imgBase64.filter((f) => f !== file);
+      setImageBase64(nextFiles);
+    },
+    [imgBase64],
+  );
 
   return (
     <>
@@ -58,7 +70,7 @@ const FileUpload = () => {
       />
       <ImgPreviewBlock>
         {imgBase64.map((img) => (
-          <ImgBox src={img} key={img} />
+          <ImgBox src={img} key={img} onClick={() => onRemove(img)} />
         ))}
       </ImgPreviewBlock>
     </>

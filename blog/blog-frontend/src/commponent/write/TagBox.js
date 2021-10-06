@@ -91,9 +91,8 @@ const TagBox = ({ tags, onChangeTags }) => {
       // setLocalTags([...localTags, tag]);
       console.log('nextTags:', nextTags);
       setLocalTags(nextTags);
-      onChangeTags(nextTags);
     },
-    [localTags, onChangeTags],
+    [localTags],
   );
 
   const onRemove = useCallback(

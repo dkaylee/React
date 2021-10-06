@@ -10,14 +10,18 @@ const RightBlock = styled.ul`
   flex-flow: row nowrap;
 
   li {
-    padding: 18px 10px;
+    padding: 18px;
+    color: #6cb2e2;
+    &:hover {
+      color: ${palette.gray[5]};
+    }
   }
 
   @media screen and (max-width: 768px) {
     flex-flow: column nowrap;
     background-color: ${palette.gray[1]};
     position: fixed;
-    transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
+    transform: ${({ open }) => (open ? 'translateX(0%)' : 'translateX(100%)')};
     top: 0;
     right: 0;
     height: 100vh;
@@ -29,7 +33,9 @@ const RightBlock = styled.ul`
 
     li {
       color: ${palette.gray[7]};
-      border-bottom: black;
+      &:hover {
+        color: ${palette.gray[5]};
+      }
     }
   }
   .right {
@@ -49,6 +55,9 @@ const UserInfo = styled.button`
   color: ${palette.gray[8]};
   background: transparent;
   border: none;
+  &:hover {
+    color: ${palette.gray[5]};
+  }
 `;
 
 const RightNav = ({ open, user, onLogout }) => {
