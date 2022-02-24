@@ -10,6 +10,7 @@ const HeaderContainer = () => {
     dispatch(logout());
     console.log('logout 성공');
   };
+
   return <Header user={user} onLogout={onLogout} />;
 };
 

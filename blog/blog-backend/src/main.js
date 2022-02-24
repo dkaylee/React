@@ -10,7 +10,7 @@ const api = require('./api');
 require('dotenv').config();
 import Koa from 'koa';
 import Router from 'koa-router';
-import bodyParser from 'koa-bodyparser';
+// import bodyParser from 'koa-bodyparser';
 import mongoose from 'mongoose';
 
 import api from './api';
@@ -21,7 +21,7 @@ import cors from 'koa-cors';
 import koaBody from 'koa-body';
 // import createFakeData from './createFakeData';
 
-//비구조화 할당을 통해 process.env 내부 값에 대한 레퍼런스 만들기
+// 비구조화 할당을 통해 process.env 내부 값에 대한 레퍼런스 만들기
 const { PORT, MONGO_URI } = process.env;
 const path = require('path');
 
@@ -46,7 +46,7 @@ const router = new Router();
 router.use('/api', api.routes()); // api 라우트 적용
 
 //라우터 적용 전에 bodyParser 적용
-app.use(bodyParser());
+//app.use(bodyParser());
 app.use(jwtMiddleware);
 app.use(cors()); // Test를 위해 세팅 "실제서버에 배포할 때는 아이피를 설정"
 app.use(
