@@ -28,15 +28,30 @@ const mappers = [
   },
 ];
 
-const mapContainer = () => {
+const mapContainer = (pos) => {
+  let crd = pos.coords;
+
   let container = document.getElementById('TMapApp');
   let options = {
-    center: new Tmapv2.LatLng(37.566481622437934, 126.98502302169841), // 지도 초기 좌표
+    center: new Tmapv2.LatLng(crd.latitude, crd.longitude), // 지도 초기 좌표
     width: '100%',
     height: '100%',
-    zoom: 15,
+    zoom: 19,
   };
+
+  // 현재 위치
+  console.log('Your current position is:');
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+
   const tMap = new window.Tmapv2.Map(container, options);
+
+  new Tmapv2.Marker({
+    title: '내위치',
+    position: new Tmapv2.LatLng(crd.latitude, crd.longitude),
+    map: tMap,
+  });
 
   mappers.forEach((item) => {
     new Tmapv2.Marker({
@@ -47,12 +62,22 @@ const mapContainer = () => {
   });
 };
 
+// 경로안내 요청
+// const getRP = () => {
+//   let lat = new Tmapv2.LatLng();
+//   let lng = new Tmapv2.
+// }
+
+const error = () => {
+  console.log('error!');
+};
+
 const MainPage = () => {
+  const { geolocation } = navigator;
+
   useEffect(() => {
     console.log('window:', window.Tmapv2);
-
-    mapContainer();
-
+    geolocation.getCurrentPosition(mapContainer, error);
     console.log('loading Tmap');
   }, []);
 
